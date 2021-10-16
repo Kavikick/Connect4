@@ -1,13 +1,16 @@
 import cherrypy
 import os
 import os.path
+from Connect4 import Connect4
+
+_instance = Connect4()
 
 
 @cherrypy.expose
 class c4API(object):
     def GET(self):
         print("called")
-        return "<h1>Test</h1>"  # <gameboard html> or a status code signifying no change
+        return _instance.display()
 
     def PUT(self, x, y):
         # Update game
@@ -28,7 +31,7 @@ class Root(object):
 
 
 def error_page_default(status, message, traceback, version):
-    return """<div style="text-align:center;" ><img src="/static/suspicious.jpeg"><div><div style="text-align:center;">Bad Kitty</div>"""
+    return """<div style="text-align:center;" ><img src="/static/suspicious.jpeg"><div>"""
 
 
 if __name__ == '__main__':

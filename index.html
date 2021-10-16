@@ -8,9 +8,7 @@
 
     <body>
         <h1 id="Title">Janky connect 4!</h1>
-        <div id="Game">
-        </div>
-        <div id="ScoreBoard">
+        <div id="Content">
         </div>
     </body>
 
@@ -22,6 +20,7 @@
         url: "/api"
     })
     .done(function(string) {
-        $("#Game").append(string)
+        $("#Content").empty()
+        $("#Content").append(string)
     });
 </script>
