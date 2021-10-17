@@ -1,7 +1,7 @@
 import cherrypy
 import os
 import os.path
-from Connect4 import Connect4
+from src.Connect4 import Connect4
 
 _instance = Connect4()
 
@@ -31,7 +31,7 @@ class Root(object):
 
 
 def error_page_default(status, message, traceback, version):
-    return """<div style="text-align:center;" ><img src="/static/suspicious.jpeg"><div>"""
+    return ''  # """<div style="text-align:center;" ><img src="/static/suspicious.jpeg"><div>"""
 
 
 if __name__ == '__main__':
@@ -41,7 +41,7 @@ if __name__ == '__main__':
             'server.socket_port': 25545,
             'server.socket_host': '192.168.32.5',
             'error_page.default': error_page_default,
-            'log.access_file': './logs/normal.log',
+            # 'log.access_file': './logs/normal.log',
         },
         '/': {
             'tools.staticdir.root': folderRoot

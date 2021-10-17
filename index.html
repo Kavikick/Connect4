@@ -9,18 +9,21 @@
     <body>
         <h1 id="Title">Janky connect 4!</h1>
         <div id="Content">
+            <button onclick="refresh()">Connect</button>
         </div>
     </body>
 
 </html>
 
 <script>
-    $.ajax({
-        type: "GET",
-        url: "/api"
-    })
-    .done(function(string) {
-        $("#Content").empty()
-        $("#Content").append(string)
-    });
+    function refresh() {
+        $.ajax({
+            type: "GET",
+            url: "/api"
+        })
+        .done(function(string) {
+            $("#Content").empty()
+            $("#Content").append(string)
+        });
+    }
 </script>
