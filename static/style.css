@@ -1,19 +1,35 @@
+/* base framwork */
+
 body {
     background: lightcyan;
     text-align: center;
-    width: 300px;
+    width: 240px;
     margin: auto;    
 }
 
 #Game {
     border: .1em solid black;
     border-radius: 1em;
-    min-height: 100px;
-    margin-bottom: 1em;
+    padding: 10px;
+    width: 168px;
+    transform: rotate(90deg);
+    margin: auto;
 }
 
 #ScoreBoard {
     border: .1em solid black;
     border-radius: 30px;
     min-height: 2em;
+}
+
+/* Connect pieces coloring */
+.piece {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: inherit;
+}
+
+redpiece {
+    background-color: red;
 }

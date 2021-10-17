@@ -9,10 +9,10 @@ from dominate.dom_tag import dom_tag
 class Piece(dom_tag):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self['cls'] = 'piece'
+        self['class'] = 'piece'
 
 
-class WhitePiece(Piece):
+class RedPiece(Piece):
     pass
 
 

@@ -17,7 +17,7 @@ class Board:
                 row = tr()
                 with row:
                     for h in range(height):
-                        td(WhitePiece('w'))
+                        td(RedPiece())
 
     def render(self):
         return self.table.render()
