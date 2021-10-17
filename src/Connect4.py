@@ -4,7 +4,7 @@
     Contains the connect4 game
     It ultimately returns html to the FrontEnd
 """
-from Board import Board
+from src.Board import Board
 
 
 class Connect4:
@@ -19,10 +19,10 @@ class Connect4:
         pass
 
     def display(self):
-        return '<div id="Game">'+self.board.print()+'</div>'+self.getScore()
+        return '<div id="Game">'+self.board.render()+'</div>'+self.getScore()
 
     def getScore(self):
         return '<div id="ScoreBoard"></div>'
 
-    def newGame(self, width, height):
-        self.board = Board(width, height)
+    def newGame(self):
+        self.board = Board()
