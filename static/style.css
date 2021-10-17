@@ -1,7 +1,7 @@
 /* base framwork */
 
 body {
-    background: lightcyan;
+    background: springgreen;
     text-align: center;
     width: 240px;
     margin: auto;    
@@ -32,4 +32,12 @@ body {
 
 redpiece {
     background-color: red;
+}
+
+blackpiece {
+    background-color: black;
+}
+
+clearpiece {
+    background-color: white;
 }
