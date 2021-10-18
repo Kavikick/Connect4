@@ -17,21 +17,29 @@ class Board:
                 row = tr()
                 with row:
                     for h in range(height):
-                        td(Piece(onclick='update('+str(w)+','+str(h)+')'))
+                        td(Piece(onclick='update('+str(w)+','+str(h)+');'))
 
     def render(self):
         return self.table.render()
 
-    def isPlayableLocation(self, x, y):
-        return True
-
     def place(self, color, x, y):
+        # adjust y cord to account for gravity and existing pieces
+        slot = 0
+        while slot < self.height:
+            if self.table.children[x][slot][0]['class'] == 'clearpiece':
+                y = slot
+                break
+            slot += 1
+            print(slot)
         if color == "RED":
             self.table.children[x][y][0]['class'] = 'redpiece'
-            print(self.table.children[x][y])
         elif color == "BLACK":
             pass
 
     def checkIfWon(self):
         # Evaluate if the game has been won
+        # Sum the up and down neighbors in a line
+        # Sum the UpperRight to LowerLeft in a line
+        # Sum the UL to LR in a line
+        # If any of those add up to 4 the color won
         return True

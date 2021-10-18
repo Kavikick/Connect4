@@ -23,7 +23,6 @@
             $("#Content").append(string)
         })
     }
-    refresh()
     function update(x,y) {
         $.ajax({
             type: "PUT",
@@ -31,4 +30,8 @@
             data: {x,y}
         })
     }
+</script>
+
+<script>
+    // setInterval(refresh,5000);
 </script>

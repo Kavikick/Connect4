@@ -12,8 +12,7 @@ class c4API(object):
         return _instance.display()
 
     def PUT(self, x, y):
-        print('x={}, y={}'.format(x, y))
-        _instance.place('RED', int(x), int(y))
+        _instance.place('cookie value', int(x), int(y))
 
     def POST(self):
         # Delete the current game
