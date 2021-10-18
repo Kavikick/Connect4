@@ -14,8 +14,7 @@ class Connect4:
         pass
 
     def place(self, player, x, y):
-        # Check if it's the player's turn
-        # place the piece and if the board says the game is won then player wins
+        self.board.place("RED", x, y)
         pass
 
     def display(self):

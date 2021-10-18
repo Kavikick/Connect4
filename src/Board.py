@@ -17,7 +17,7 @@ class Board:
                 row = tr()
                 with row:
                     for h in range(height):
-                        td(RedPiece())
+                        td(Piece(onclick='update('+str(w)+','+str(h)+')'))
 
     def render(self):
         return self.table.render()
@@ -26,8 +26,11 @@ class Board:
         return True
 
     def place(self, color, x, y):
-        # place the piece
-        return None
+        if color == "RED":
+            self.table.children[x][y][0]['class'] = 'redpiece'
+            print(self.table.children[x][y])
+        elif color == "BLACK":
+            pass
 
     def checkIfWon(self):
         # Evaluate if the game has been won

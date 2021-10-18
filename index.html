@@ -18,14 +18,17 @@
 
 <script>
     function refresh() {
-        $.ajax({
-            type: "GET",
-            url: "/api"
-        })
-        .done(function(string) {
+        $.get('/api',function(string) {
             $("#Content").empty()
             $("#Content").append(string)
-        });
+        })
     }
     refresh()
+    function update(x,y) {
+        $.ajax({
+            type: "PUT",
+            url: "/api",
+            data: {x,y}
+        })
+    }
 </script>

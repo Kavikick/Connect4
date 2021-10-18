@@ -12,7 +12,7 @@ body {
     border-radius: 1em;
     padding: 10px;
     width: 168px;
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
     margin: auto;
 }
 
@@ -22,22 +22,22 @@ body {
     min-height: 2em;
 }
 
-/* Connect pieces coloring */
-.piece {
+/* Pieces */
+piece {
     width: 20px;
     height: 20px;
     border-radius: 10px;
     display: inherit;
 }
 
-redpiece {
+.redpiece {
     background-color: red;
 }
 
-blackpiece {
+.blackpiece {
     background-color: black;
 }
 
-clearpiece {
+.clearpiece {
     background-color: white;
 }

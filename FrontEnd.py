@@ -9,17 +9,16 @@ _instance = Connect4()
 @cherrypy.expose
 class c4API(object):
     def GET(self):
-        print("called")
         return _instance.display()
 
     def PUT(self, x, y):
-        # Update game
-        return "nothing"
+        print('x={}, y={}'.format(x, y))
+        _instance.place('RED', int(x), int(y))
 
     def POST(self):
         # Delete the current game
         # Create a new one
-        return "nothing"
+        pass
 
 
 class Root(object):
