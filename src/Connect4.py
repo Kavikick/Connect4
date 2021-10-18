@@ -14,7 +14,7 @@ class Connect4:
         pass
 
     def place(self, player, x, y):
-        self.board.place("RED", x, y)
+        self.board.place("red", x, y)
         pass
 
     def display(self):
