@@ -46,7 +46,7 @@ class Board:
         if self.checkIfWon(color, x, y):
             print('WON')
 
-        return True  # A piece did git placed
+        return True  # A piece did get placed
 
     def sumLine(self, color, sweep, translator):
         chainLength = 0
@@ -54,29 +54,33 @@ class Board:
         for val in sweep:
             x, y = translator(val)
             slot = self.getSlot(x, y)
-            if slot == None:
-                pass
-            elif slot[0]['class'] == color+'piece':
-                chainLength += 1
+            if not slot or slot[0]['class'] != color+'piece':
+                chainLength = 0
             else:
+                chainLength += 1
                 if chainLength > longestChain:
                     longestChain = chainLength
-                chainLength = 0
         return longestChain
 
     def checkIfWon(self, color, x, y):
         counts = []
         # Vertical (y-3 to y+4)
-        print(self.sumLine(color, range(y-3, y+4),
-              translator=lambda val: (x, val)))
+        counts.append(self.sumLine(color, range(y-3, y+4),
+                      translator=lambda val: (x, val)))
 
         # Horizontal (x-3 to x+4)
-        print(self.sumLine(color, range(x-3, x+4),
-              translator=lambda val: (val, y)))
+        counts.append(self.sumLine(color, range(x-3, x+4),
+                      translator=lambda val: (val, y)))
 
         # Sum the LowerLeft to UpperRight in a line (x-3 to x+4)
+        slope, intercept = (1, -x+y)
+        counts.append(self.sumLine(color, range(x-3, x+4),
+                      translator=lambda val: (val, slope*val+intercept)))
         # Sum the UL to LR in a line (x-3 to x+4)
-        # (x, x-offset) where offset = x-y this way the diagonals are parameterized to x
+        slope, intercept = (-1, x+y)
+        counts.append(self.sumLine(color, range(x-3, x+4),
+                      translator=lambda val: (val, slope*val+intercept)))
+
         # If any of those add up to 4 the color won
         for sum in counts:
             if sum == 4:
