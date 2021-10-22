@@ -1,7 +1,10 @@
 import cherrypy
 import os
 import os.path
+
 from src.Connect4 import Connect4
+from dominate.tags import *
+from dominate.document import document
 
 _instance = Connect4()
 
@@ -23,9 +26,27 @@ class c4API(object):
 class Root(object):
     api = c4API()
 
+    def __init__(self) -> None:
+        super().__init__()
+        index = document(title='CJank Connect4')
+        index.head.add(link(href="/static/style.css", rel='stylesheet'))
+        index.head.add(
+            script(src="https://code.jquery.com/jquery-3.6.0.min.js"))
+        index.head.add(script(src="/static/behavior.js"))
+
+        index += h1("Janky connect 4", id="Title")
+        index += div(id="Content")
+        index += button("Refresh", onclick="refresh()")
+
+        self.rendered = index.render()
+
     @cherrypy.expose
     def index(self):
-        return open('index.html')
+        return self.rendered
+
+    @cherrypy.expose
+    def PUT(self, color):
+        cherrypy.session['color'] = color
 
 
 def error_page_default(status, message, traceback, version):
@@ -42,7 +63,8 @@ if __name__ == '__main__':
             # 'log.access_file': './logs/normal.log',
         },
         '/': {
-            'tools.staticdir.root': folderRoot
+            'tools.staticdir.root': folderRoot,
+            'tools.sessions.on': True
         },
         '/api': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher()
