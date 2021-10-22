@@ -14,11 +14,11 @@ class Connect4:
         pass
 
     def place(self, player, x, y):
-        self.board.place("red", x, y)
+        self.board.place(player, x, y)
         pass
 
     def display(self):
-        return '<div id="Game">'+self.board.render()+'</div>'+self.getScore()
+        return '<div id="Game">'+self.board.render()+'</div>'  # +self.getScore()
 
     def getScore(self):
         return '<div id="ScoreBoard"></div>'

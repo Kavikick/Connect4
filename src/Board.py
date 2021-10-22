@@ -42,7 +42,7 @@ class Board:
         if color == "red":
             self.getSlot(x, y)[0]['class'] = 'redpiece'
         elif color == "black":
-            pass
+            self.getSlot(x, y)[0]['class'] = 'blackpiece'
         if self.checkIfWon(color, x, y):
             print('WON')
 

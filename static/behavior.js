@@ -1,5 +1,5 @@
 function refresh() {
-    $.get('/api',function(string) {
+    $.get('/c4',function(string) {
         $("#Content").empty()
         $("#Content").append(string)
     })
@@ -7,7 +7,16 @@ function refresh() {
 function update(x,y) {
     $.ajax({
         type: "PUT",
-        url: "/api",
+        url: "/c4",
         data: {x,y}
     })
+}
+function register(color) {
+    $.ajax({
+        type: "PUT",
+        url: "/register",
+        data: {color}
+    })
+    $('#refresh').css("display","inline")
+    refresh()
 }
