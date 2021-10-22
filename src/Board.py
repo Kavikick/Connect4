@@ -17,7 +17,7 @@ class Board:
                 row = tr()
                 with row:
                     for h in range(height):
-                        td(Piece(onclick='update('+str(w)+','+str(h)+');refresh()'))
+                        td(Piece(), onclick='update('+str(w)+','+str(h)+');')
 
     def render(self):
         return self.table.render()
@@ -43,8 +43,6 @@ class Board:
             self.getSlot(x, y)[0]['class'] = 'redpiece'
         elif color == "black":
             self.getSlot(x, y)[0]['class'] = 'blackpiece'
-        if self.checkIfWon(color, x, y):
-            print('WON')
 
         return True  # A piece did get placed
 
@@ -83,6 +81,6 @@ class Board:
 
         # If any of those add up to 4 the color won
         for sum in counts:
-            if sum == 4:
+            if sum >= 4:
                 return True
         return False

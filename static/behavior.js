@@ -10,6 +10,7 @@ function update(x,y) {
         url: "/c4",
         data: {x,y}
     })
+    refresh();
 }
 function register(color) {
     $.ajax({
@@ -19,4 +20,11 @@ function register(color) {
     })
     $('#refresh').css("display","inline")
     refresh()
+}
+function reset() {
+    $.ajax({
+        type: "POST",
+        url: "/c4"
+    })
+    $('#reset').remove();
 }

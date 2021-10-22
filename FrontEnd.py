@@ -19,16 +19,13 @@ class c4API(object):
         _instance.place(cherrypy.request.cookie['color'].value, int(x), int(y))
 
     def POST(self):
-        # Delete the current game
-        # Create a new one
-        pass
+        _instance.newGame()
 
 
 @cherrypy.expose
 class registerAPI(object):
     def PUT(self, color):
         cherrypy.response.cookie['color'] = color
-        # return ''
 
 
 class Root(object):
@@ -47,8 +44,7 @@ class Root(object):
         index += div(button("Red", onclick="register('red')"),
                      span(" or "),
                      button("Black", onclick="register('black')"), id="Content")
-        index += button("refresh", onclick="refresh()",
-                        id="refresh", style='display: none;')
+        index.add(script("setInterval(refresh,3000)"))
 
         self.rendered = index.render()
 
@@ -58,7 +54,7 @@ class Root(object):
 
 
 def error_page_default(status, message, traceback, version):
-    return ''  # """<div style="text-align:center;" ><img src="/static/suspicious.jpeg"><div>"""
+    return ''
 
 
 if __name__ == '__main__':
@@ -66,7 +62,7 @@ if __name__ == '__main__':
     conf = {
         'global': {
             'server.socket_port': 8080,
-            'server.socket_host': '192.168.32.5',
+            'server.socket_host': '0.0.0.0',
             'error_page.default': error_page_default,
             # 'log.access_file': './logs/normal.log',
         },
